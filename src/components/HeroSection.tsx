@@ -3,10 +3,19 @@
 import React from "react";
 import Image from "next/image";
 import { PORTFOLIO_DATA } from "@/data/portfolioData";
+import { LivePortfolioData } from "@/lib/dal";
 import { ArrowDown, ArrowUpRight, Award, Users, ShieldCheck, GraduationCap } from "lucide-react";
 
-export default function HeroSection() {
-  const { profile } = PORTFOLIO_DATA;
+interface HeroSectionProps {
+  profile?: LivePortfolioData["profile"];
+  sectionConfig?: {
+    customTitle?: string | null;
+    customSubtitle?: string | null;
+  };
+}
+
+export default function HeroSection({ profile: propProfile, sectionConfig }: HeroSectionProps = {}) {
+  const profile = propProfile || PORTFOLIO_DATA.profile;
 
   const institutionalProof = [
     {
@@ -46,9 +55,15 @@ export default function HeroSection() {
             
             {/* Primary Headline: Newsreader Display with Balanced Cadence */}
             <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-[68px] leading-[1.06] font-bold tracking-tight text-white mb-6">
-              Building Businesses. <br />
-              <span className="font-semibold text-slate-100 italic">Empowering People.</span> <br />
-              Creating Enduring Impact.
+              {sectionConfig?.customTitle ? (
+                sectionConfig.customTitle
+              ) : (
+                <>
+                  Building Businesses. <br />
+                  <span className="font-semibold text-slate-100 italic">Empowering People.</span> <br />
+                  Creating Enduring Impact.
+                </>
+              )}
             </h1>
 
             {/* Institutional Provenance Bar */}
@@ -57,14 +72,15 @@ export default function HeroSection() {
               <span className="text-slate-600" aria-hidden="true">&bull;</span>
               <span>Founder, LCB (24k+ Members)</span>
               <span className="text-slate-600" aria-hidden="true">&bull;</span>
-              <span>PMP® Credential</span>
+              <span>{profile.honorificSuffix || "PMP®"} Credential</span>
               <span className="text-slate-600" aria-hidden="true">&bull;</span>
               <span>IBA DU EMBA</span>
             </div>
 
             {/* Core Narrative Bio with Strict 65ch Measure */}
             <p className="text-base sm:text-lg text-slate-300 font-light leading-relaxed max-w-[65ch] mb-10">
-              A multinational commercial strategist with over seven years of operational route-to-market execution across Marico Bangladesh, Robi Axiata, and Nestlé. Dedicated to converting commercial rigor into high-velocity revenue growth, while building nationwide capability pipelines for Bangladesh&apos;s next generation of professionals.
+              {profile.heroNarrativeBio ||
+                "A multinational commercial strategist with over seven years of operational route-to-market execution across Marico Bangladesh, Robi Axiata, and Nestlé. Dedicated to converting commercial rigor into high-velocity revenue growth, while building nationwide capability pipelines for Bangladesh's next generation of professionals."}
             </p>
 
             {/* Executive Action Group */}
@@ -125,8 +141,8 @@ export default function HeroSection() {
               {/* Main Portrait with Natural Photographic Aspect Ratio */}
               <div className="relative aspect-[4/5] overflow-hidden bg-[#070A11] border border-white/[0.06]">
                 <Image
-                  src={profile.images.portraitMain}
-                  alt="Altaf Hossain Raju, PMP® - Area Manager at Marico Bangladesh and Founder of LinkedIn Community Bangladesh"
+                  src={profile.images.portraitMain || "/images/altaf-portrait-lcb.jpg"}
+                  alt={`${profile.displayName || "Altaf Hossain Raju"}, ${profile.honorificSuffix || "PMP®"} - Area Manager at Marico Bangladesh and Founder of LinkedIn Community Bangladesh`}
                   fill
                   priority
                   sizes="(max-width: 640px) 340px, (max-width: 1024px) 390px, 430px"
@@ -137,14 +153,14 @@ export default function HeroSection() {
               {/* Documentary Caption & Provenance */}
               <div className="pt-4 flex items-center justify-between text-xs font-sans text-slate-300 border-t border-white/[0.06] mt-3">
                 <span className="text-white font-semibold uppercase tracking-wider">
-                  Md. Altaf Hossain Raju
+                  {profile.fullName || "Md. Altaf Hossain Raju"}
                 </span>
                 <span className="text-[#D4AF37] font-medium">
-                  Dhaka, Bangladesh
+                  {profile.contact.address ? profile.contact.address.split(",")[0] : "Dhaka, Bangladesh"}
                 </span>
               </div>
               <p className="pt-2 text-xs text-slate-400 font-light leading-relaxed">
-                Dual operational leadership: FMCG corporate distribution architecture and nationwide youth professional capability development.
+                {profile.heroSubheadline || "Dual operational leadership: FMCG corporate distribution architecture and nationwide youth professional capability development."}
               </p>
 
             </div>

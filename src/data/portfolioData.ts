@@ -5,6 +5,8 @@ export interface Milestone {
   description: string;
   category: "corporate" | "community" | "education";
   badge?: string;
+  sortOrder?: number;
+  isPublished?: boolean;
 }
 
 export interface Metric {
@@ -16,6 +18,9 @@ export interface Metric {
   description: string;
   verificationSource: string;
   category: string;
+  sortOrder?: number;
+  isPublished?: boolean;
+  isPrimary?: boolean;
 }
 
 export interface CareerRole {
@@ -30,6 +35,8 @@ export interface CareerRole {
   keyResponsibilities: string[];
   achievements: string[];
   industryContext: string;
+  sortOrder?: number;
+  isPublished?: boolean;
 }
 
 export interface Venture {
@@ -48,6 +55,8 @@ export interface Venture {
   highlights: string[];
   ctaLabel?: string;
   ctaUrl?: string;
+  sortOrder?: number;
+  isPublished?: boolean;
 }
 
 export interface SpeakingEvent {
@@ -61,6 +70,8 @@ export interface SpeakingEvent {
   description: string;
   image: string;
   keyTopics: string[];
+  sortOrder?: number;
+  isPublished?: boolean;
 }
 
 export interface MediaFeature {
@@ -73,6 +84,8 @@ export interface MediaFeature {
   linkText: string;
   url: string;
   highlightQuote?: string;
+  sortOrder?: number;
+  isPublished?: boolean;
 }
 
 export interface Credential {
@@ -85,6 +98,9 @@ export interface Credential {
   logo?: string;
   details: string;
   verificationNote: string;
+  isPremier?: boolean;
+  sortOrder?: number;
+  isPublished?: boolean;
 }
 
 export interface Testimonial {
@@ -94,6 +110,33 @@ export interface Testimonial {
   organization: string;
   quote: string;
   context: string;
+  sortOrder?: number;
+  isPublished?: boolean;
+}
+
+export interface AwardItem {
+  title: string;
+  organization: string;
+  description: string;
+  year: string;
+  sortOrder?: number;
+  isPublished?: boolean;
+}
+
+export interface LeadershipRoleItem {
+  role: string;
+  organization: string;
+  period: string;
+  sortOrder?: number;
+  isPublished?: boolean;
+}
+
+export interface AreaOfExpertiseItem {
+  title: string;
+  description: string;
+  competencies: string[];
+  sortOrder?: number;
+  isPublished?: boolean;
 }
 
 export const PORTFOLIO_DATA = {
@@ -102,9 +145,12 @@ export const PORTFOLIO_DATA = {
     displayName: "Altaf Hossain Raju, PMP®",
     shortName: "Altaf Hossain Raju",
     initials: "AHR",
+    honorificSuffix: "PMP®",
     heroHeadline: "Building Businesses. Empowering People. Creating Impact.",
     heroSubheadline:
       "Area Manager at Marico Bangladesh, Founder of LinkedIn Community Bangladesh (LCB), and PMP® certified corporate strategist dedicated to FMCG market leadership, youth employability, and high-performance team development.",
+    heroNarrativeBio:
+      "A multinational commercial strategist with over seven years of operational route-to-market execution across Marico Bangladesh, Robi Axiata, and Nestlé. Dedicated to converting commercial rigor into high-velocity revenue growth, while building nationwide capability pipelines for Bangladesh's next generation of professionals.",
     executiveBio: [
       "Altaf Hossain Raju, PMP®, is a distinguished Bangladeshi corporate professional, entrepreneur, and community builder with over seven years of cross-industry operational leadership across global FMCG and telecommunications multinationals, including Marico Bangladesh, Robi Axiata, and Nestlé Bangladesh.",
       "As Area Manager – Market Operation at Marico Bangladesh Limited, Altaf oversees sales planning, route-to-market architecture, alternative channel distribution, and multi-tier team management across strategic clusters. His commercial discipline and execution excellence have earned him Marico's highest corporate accolade—the 'Go Beyond Award'—alongside the Global CEO Award for two consecutive cycles.",
@@ -456,7 +502,7 @@ export const PORTFOLIO_DATA = {
         "Career Guidance Labs"
       ],
     },
-  ],
+  ] as AreaOfExpertiseItem[],
 
   speakingEngagements: [
     {
@@ -683,7 +729,7 @@ export const PORTFOLIO_DATA = {
       description: "Recognized nationally in JFB & 1st Runner Up in PNS Category for exceptional commercial delivery.",
       year: "2021"
     }
-  ],
+  ] as AwardItem[],
 
   testimonials: [
     {
@@ -741,5 +787,5 @@ export const PORTFOLIO_DATA = {
       organization: "Bangladesh FMCG HR Society",
       period: "Active Member"
     }
-  ]
+  ] as LeadershipRoleItem[]
 };

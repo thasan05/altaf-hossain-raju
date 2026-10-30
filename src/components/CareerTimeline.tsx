@@ -3,10 +3,21 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { PORTFOLIO_DATA } from "@/data/portfolioData";
+import { LivePortfolioData } from "@/lib/dal";
 import { Award, Calendar, MapPin, ChevronDown, ChevronUp, CheckCircle2 } from "lucide-react";
 
-export default function CareerTimeline() {
-  const { careerJourney } = PORTFOLIO_DATA;
+interface CareerTimelineProps {
+  careerJourney?: LivePortfolioData["careerJourney"];
+  sectionConfig?: {
+    customTitle?: string | null;
+    customSubtitle?: string | null;
+  };
+}
+
+export default function CareerTimeline({ careerJourney: propCareerJourney, sectionConfig }: CareerTimelineProps = {}) {
+  const careerJourney = (propCareerJourney || PORTFOLIO_DATA.careerJourney).filter(
+    (item) => item.isPublished !== false
+  );
   const [filter, setFilter] = useState<"all" | "marico" | "robi" | "nestle">("all");
   const [expandedHistorical, setExpandedHistorical] = useState(false);
 
@@ -26,8 +37,13 @@ export default function CareerTimeline() {
         <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-16 pb-8 border-b border-white/[0.08] gap-8">
           <div>
             <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-[1.12]">
-              Multinational Operational Trajectory
+              {sectionConfig?.customTitle || "Multinational Operational Trajectory"}
             </h2>
+            {sectionConfig?.customSubtitle && (
+              <p className="text-slate-400 text-sm sm:text-base mt-2 font-light leading-relaxed">
+                {sectionConfig.customSubtitle}
+              </p>
+            )}
           </div>
 
           {/* Segmented Filter Controls */}

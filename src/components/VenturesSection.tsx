@@ -3,13 +3,26 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { PORTFOLIO_DATA } from "@/data/portfolioData";
+import { LivePortfolioData } from "@/lib/dal";
 import { ExternalLink, CheckCircle2, ShieldCheck } from "lucide-react";
 
-export default function VenturesSection() {
-  const { ventures } = PORTFOLIO_DATA;
-  const [activeTab, setActiveTab] = useState<string>(ventures[0].id);
+interface VenturesSectionProps {
+  ventures?: LivePortfolioData["ventures"];
+  sectionConfig?: {
+    customTitle?: string | null;
+    customSubtitle?: string | null;
+  };
+}
+
+export default function VenturesSection({ ventures: propVentures, sectionConfig }: VenturesSectionProps = {}) {
+  const ventures = (propVentures || PORTFOLIO_DATA.ventures).filter(
+    (v) => v.isPublished !== false
+  );
+  const [activeTab, setActiveTab] = useState<string>(ventures[0]?.id || "");
 
   const selectedVenture = ventures.find((v) => v.id === activeTab) || ventures[0];
+
+  if (ventures.length === 0) return null;
 
   return (
     <section id="ventures" className="py-24 sm:py-32 lg:py-36 border-b border-white/[0.08] bg-[#070A11] scroll-mt-20">
@@ -19,11 +32,12 @@ export default function VenturesSection() {
         <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-16 pb-8 border-b border-white/[0.08] gap-8">
           <div>
             <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-[1.12]">
-              Strategic Ventures &amp; Community Ecosystems
+              {sectionConfig?.customTitle || "Strategic Ventures & Community Ecosystems"}
             </h2>
           </div>
           <p className="text-slate-400 text-sm sm:text-base max-w-md font-light leading-relaxed">
-            Pioneering nationwide youth capability platforms that transform campus talent into corporate leaders through structured mentorship and personal branding.
+            {sectionConfig?.customSubtitle ||
+              "Pioneering nationwide youth capability platforms that transform campus talent into corporate leaders through structured mentorship and personal branding."}
           </p>
         </div>
 

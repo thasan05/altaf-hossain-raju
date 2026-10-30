@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { PORTFOLIO_DATA } from "@/data/portfolioData";
+import { LivePortfolioData } from "@/lib/dal";
 import LinkedinIcon from "@/components/icons/LinkedinIcon";
 import {
   Mail,
@@ -17,8 +18,16 @@ import {
   Building
 } from "lucide-react";
 
-export default function ContactSection() {
-  const { profile } = PORTFOLIO_DATA;
+interface ContactSectionProps {
+  profile?: LivePortfolioData["profile"];
+  sectionConfig?: {
+    customTitle?: string | null;
+    customSubtitle?: string | null;
+  };
+}
+
+export default function ContactSection({ profile: propProfile, sectionConfig }: ContactSectionProps = {}) {
+  const profile = propProfile || PORTFOLIO_DATA.profile;
   const { contact } = profile;
 
   const [copiedEmail, setCopiedEmail] = useState(false);
@@ -110,11 +119,12 @@ export default function ContactSection() {
         <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-16 pb-8 border-b border-white/[0.08] gap-8">
           <div>
             <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-[1.12]">
-              Executive Inquiries &amp; Direct Dialogue
+              {sectionConfig?.customTitle || "Executive Inquiries & Direct Dialogue"}
             </h2>
           </div>
           <p className="text-slate-400 text-sm sm:text-base max-w-md font-light leading-relaxed">
-            Open for executive FMCG leadership opportunities, keynote symposiums, corporate training masterclasses, and strategic community partnerships.
+            {sectionConfig?.customSubtitle ||
+              "Open for executive FMCG leadership opportunities, keynote symposiums, corporate training masterclasses, and strategic community partnerships."}
           </p>
         </div>
 

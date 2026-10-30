@@ -2,10 +2,21 @@
 
 import React from "react";
 import { PORTFOLIO_DATA } from "@/data/portfolioData";
+import { LivePortfolioData } from "@/lib/dal";
 import { ExternalLink, Newspaper } from "lucide-react";
 
-export default function MediaSection() {
-  const { mediaCoverage } = PORTFOLIO_DATA;
+interface MediaSectionProps {
+  mediaCoverage?: LivePortfolioData["mediaCoverage"];
+  sectionConfig?: {
+    customTitle?: string | null;
+    customSubtitle?: string | null;
+  };
+}
+
+export default function MediaSection({ mediaCoverage: propMedia, sectionConfig }: MediaSectionProps = {}) {
+  const mediaCoverage = (propMedia || PORTFOLIO_DATA.mediaCoverage).filter(
+    (item) => item.isPublished !== false
+  );
 
   return (
     <section id="media" className="py-24 sm:py-32 lg:py-36 border-b border-white/[0.08] bg-[#070A11] scroll-mt-20">
@@ -15,11 +26,12 @@ export default function MediaSection() {
         <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-16 pb-8 border-b border-white/[0.08] gap-8">
           <div>
             <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-[1.12]">
-              Documented in the Public Record
+              {sectionConfig?.customTitle || "Documented in the Public Record"}
             </h2>
           </div>
           <p className="text-slate-400 text-sm sm:text-base max-w-md font-light leading-relaxed">
-            Archival media coverage across national business dailies, university press, and executive thought leadership forums.
+            {sectionConfig?.customSubtitle ||
+              "Archival media coverage across national business dailies, university press, and executive thought leadership forums."}
           </p>
         </div>
 

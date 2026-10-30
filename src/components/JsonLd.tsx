@@ -1,15 +1,20 @@
 import React from "react";
 import { PORTFOLIO_DATA } from "@/data/portfolioData";
+import { LivePortfolioData } from "@/lib/dal";
 
-export default function JsonLd() {
-  const { profile } = PORTFOLIO_DATA;
+interface JsonLdProps {
+  profile?: LivePortfolioData["profile"];
+}
+
+export default function JsonLd({ profile: propProfile }: JsonLdProps = {}) {
+  const profile = propProfile || PORTFOLIO_DATA.profile;
 
   const schema = {
     "@context": "https://schema.org",
     "@type": "Person",
     "name": profile.fullName,
     "alternateName": [profile.displayName, profile.shortName, "Altaf Hossain Raju"],
-    "honorificSuffix": "PMP®",
+    "honorificSuffix": profile.honorificSuffix || "PMP®",
     "jobTitle": "Area Manager – Market Operation",
     "worksFor": {
       "@type": "Organization",

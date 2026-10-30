@@ -3,10 +3,21 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { PORTFOLIO_DATA } from "@/data/portfolioData";
+import { LivePortfolioData } from "@/lib/dal";
 import { Users, ArrowUpRight } from "lucide-react";
 
-export default function SpeakingSection() {
-  const { speakingEngagements } = PORTFOLIO_DATA;
+interface SpeakingSectionProps {
+  speakingEngagements?: LivePortfolioData["speakingEngagements"];
+  sectionConfig?: {
+    customTitle?: string | null;
+    customSubtitle?: string | null;
+  };
+}
+
+export default function SpeakingSection({ speakingEngagements: propEngagements, sectionConfig }: SpeakingSectionProps = {}) {
+  const speakingEngagements = (propEngagements || PORTFOLIO_DATA.speakingEngagements).filter(
+    (e) => e.isPublished !== false
+  );
   const [filterType, setFilterType] = useState<string>("All");
 
   const types = ["All", "Masterclass", "Summit", "Keynote", "Panel Discussion", "Workshop"];
@@ -24,8 +35,13 @@ export default function SpeakingSection() {
         <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-16 pb-8 border-b border-white/[0.08] gap-8">
           <div>
             <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-[1.12]">
-              Keynotes, Masterclasses &amp; University Addresses
+              {sectionConfig?.customTitle || "Keynotes, Masterclasses & University Addresses"}
             </h2>
+            {sectionConfig?.customSubtitle && (
+              <p className="text-slate-400 text-sm sm:text-base mt-2 font-light leading-relaxed">
+                {sectionConfig.customSubtitle}
+              </p>
+            )}
           </div>
 
           {/* Type Filter Controls */}

@@ -2,16 +2,27 @@
 
 import React from "react";
 import { PORTFOLIO_DATA } from "@/data/portfolioData";
+import { LivePortfolioData } from "@/lib/dal";
 import { TrendingUp, Layers, Users2, Share2, Rocket, GraduationCap } from "lucide-react";
 
-export default function ExpertiseSection() {
-  const { areasOfExpertise } = PORTFOLIO_DATA;
+interface ExpertiseSectionProps {
+  areasOfExpertise?: LivePortfolioData["areasOfExpertise"];
+  sectionConfig?: {
+    customTitle?: string | null;
+    customSubtitle?: string | null;
+  };
+}
+
+export default function ExpertiseSection({ areasOfExpertise: propAreas, sectionConfig }: ExpertiseSectionProps = {}) {
+  const areasOfExpertise = (propAreas || PORTFOLIO_DATA.areasOfExpertise).filter(
+    (a) => a.isPublished !== false
+  );
 
   // Group into thematic strategic tiers
-  const primaryCommercial = areasOfExpertise[0]; // Route-to-Market
-  const secondaryCommercial = areasOfExpertise.slice(1, 3); // Revenue & Partner Governance
-  const youthAndMentorship = areasOfExpertise.slice(3, 5); // Talent Pipeline & Executive Presence
-  const pmpGovernance = areasOfExpertise[5]; // Project Management
+  const primaryCommercial = areasOfExpertise[0] || PORTFOLIO_DATA.areasOfExpertise[0];
+  const secondaryCommercial = areasOfExpertise.slice(1, 3);
+  const youthAndMentorship = areasOfExpertise.slice(3, 5);
+  const pmpGovernance = areasOfExpertise[5] || areasOfExpertise[areasOfExpertise.length - 1] || primaryCommercial;
 
   return (
     <section id="expertise" className="py-24 sm:py-32 lg:py-36 border-b border-white/[0.08] bg-[#070A11] scroll-mt-20">
@@ -21,11 +32,12 @@ export default function ExpertiseSection() {
         <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-16 pb-8 border-b border-white/[0.08] gap-8">
           <div>
             <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-[1.12]">
-              Strategic Competencies &amp; Functional Domains
+              {sectionConfig?.customTitle || "Strategic Competencies & Functional Domains"}
             </h2>
           </div>
           <p className="text-slate-400 text-sm sm:text-base max-w-md font-light leading-relaxed">
-            Synthesized across multinational sales leadership, route-to-market distribution economics, and nationwide capability architecture.
+            {sectionConfig?.customSubtitle ||
+              "Synthesized across multinational sales leadership, route-to-market distribution economics, and nationwide capability architecture."}
           </p>
         </div>
 

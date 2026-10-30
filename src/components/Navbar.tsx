@@ -3,18 +3,46 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { PORTFOLIO_DATA } from "@/data/portfolioData";
+import { LivePortfolioData } from "@/lib/dal";
 import { Menu, X, ArrowUpRight } from "lucide-react";
 
-export default function Navbar() {
+interface NavbarProps {
+  sections?: LivePortfolioData["sections"];
+  profile?: LivePortfolioData["profile"];
+}
+
+const defaultNavLinks = [
+  { name: "Overview", href: "#hero" },
+  { name: "About", href: "#about" },
+  { name: "Career", href: "#career" },
+  { name: "Ventures", href: "#ventures" },
+  { name: "Competencies", href: "#expertise" },
+  { name: "Speaking", href: "#speaking" },
+  { name: "Credentials", href: "#credentials" },
+  { name: "Contact", href: "#contact" },
+];
+
+export default function Navbar({ sections: propSections, profile: propProfile }: NavbarProps = {}) {
+  const profile = propProfile || PORTFOLIO_DATA.profile;
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("hero");
+
+  const navLinks = propSections && propSections.length > 0
+    ? propSections
+        .filter((s) => s.isVisible && s.id !== "impact")
+        .sort((a, b) => a.sortOrder - b.sortOrder)
+        .map((s) => ({
+          name: s.label || s.id,
+          href: `#${s.id}`,
+        }))
+    : defaultNavLinks;
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
 
-      const sections = [
+      const sectionIds = [
         "hero",
         "impact",
         "about",
@@ -29,7 +57,7 @@ export default function Navbar() {
       ];
 
       const scrollPos = window.scrollY + 180;
-      for (const section of sections) {
+      for (const section of sectionIds) {
         const el = document.getElementById(section);
         if (el) {
           const top = el.offsetTop;
@@ -67,17 +95,6 @@ export default function Navbar() {
     };
   }, [mobileMenuOpen]);
 
-  const navLinks = [
-    { name: "Overview", href: "#hero" },
-    { name: "About", href: "#about" },
-    { name: "Career", href: "#career" },
-    { name: "Ventures", href: "#ventures" },
-    { name: "Competencies", href: "#expertise" },
-    { name: "Speaking", href: "#speaking" },
-    { name: "Credentials", href: "#credentials" },
-    { name: "Contact", href: "#contact" },
-  ];
-
   return (
     <>
       <header
@@ -94,18 +111,18 @@ export default function Navbar() {
             href="#hero"
             onClick={() => setMobileMenuOpen(false)}
             className="group flex items-center gap-3.5 transition-opacity hover:opacity-95 focus:outline-none focus:ring-1 focus:ring-[#D4AF37]"
-            aria-label="Altaf Hossain Raju - Executive Portfolio"
+            aria-label={`${profile.displayName || "Altaf Hossain Raju"} - Executive Portfolio`}
           >
             <div className="w-10 h-10 rounded-sm bg-[#0E1524] border border-white/10 flex items-center justify-center font-serif text-sm font-semibold tracking-wider text-[#D4AF37] group-hover:border-[#D4AF37]/40 transition-colors shrink-0">
-              AHR
+              {profile.initials || "AHR"}
             </div>
             <div className="flex flex-col">
               <div className="flex items-center gap-2">
                 <span className="font-serif text-base sm:text-lg font-bold tracking-tight text-white group-hover:text-[#F8FAFC] transition-colors">
-                  Altaf Hossain Raju
+                  {profile.displayName || "Altaf Hossain Raju"}
                 </span>
                 <span className="text-xs font-sans font-bold tracking-wider text-[#D4AF37] px-1.5 py-0.5 rounded-sm bg-[#D4AF37]/10 border border-[#D4AF37]/25">
-                  PMP®
+                  {profile.honorificSuffix || "PMP®"}
                 </span>
               </div>
               <span className="text-xs tracking-wide text-slate-300 font-sans hidden sm:block">
@@ -202,7 +219,7 @@ export default function Navbar() {
             <div className="flex items-center justify-between text-xs text-slate-400 font-sans pt-2">
               <span>Dhaka, Bangladesh</span>
               <a
-                href={PORTFOLIO_DATA.profile.contact.linkedin}
+                href={profile.contact.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-[#D4AF37] hover:underline"

@@ -2,10 +2,21 @@
 
 import React from "react";
 import { PORTFOLIO_DATA } from "@/data/portfolioData";
+import { LivePortfolioData } from "@/lib/dal";
 import { ShieldCheck, Quote } from "lucide-react";
 
-export default function TestimonialsSection() {
-  const { testimonials } = PORTFOLIO_DATA;
+interface TestimonialsSectionProps {
+  testimonials?: LivePortfolioData["testimonials"];
+  sectionConfig?: {
+    customTitle?: string | null;
+    customSubtitle?: string | null;
+  };
+}
+
+export default function TestimonialsSection({ testimonials: propTestimonials, sectionConfig }: TestimonialsSectionProps = {}) {
+  const testimonials = (propTestimonials || PORTFOLIO_DATA.testimonials).filter(
+    (t) => t.isPublished !== false
+  );
 
   return (
     <section id="testimonials" className="py-24 sm:py-32 lg:py-36 border-b border-white/[0.08] bg-[#070A11] scroll-mt-20">
@@ -15,11 +26,12 @@ export default function TestimonialsSection() {
         <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-16 pb-8 border-b border-white/[0.08] gap-8">
           <div>
             <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-[1.12]">
-              Community Voices &amp; Mentee Testimonials
+              {sectionConfig?.customTitle || "Community Voices & Mentee Testimonials"}
             </h2>
           </div>
           <p className="text-slate-400 text-sm sm:text-base max-w-md font-light leading-relaxed">
-            Reflections from university campus ambassadors, student leaders, and nationwide workshop participants empowered through LCB.
+            {sectionConfig?.customSubtitle ||
+              "Reflections from university campus ambassadors, student leaders, and nationwide workshop participants empowered through LCB."}
           </p>
         </div>
 

@@ -2,14 +2,25 @@
 
 import React from "react";
 import { PORTFOLIO_DATA } from "@/data/portfolioData";
+import { LivePortfolioData } from "@/lib/dal";
 import { ShieldCheck, ArrowUpRight } from "lucide-react";
 
-export default function ImpactSection() {
-  const { metrics } = PORTFOLIO_DATA;
+interface ImpactSectionProps {
+  metrics?: LivePortfolioData["metrics"];
+  sectionConfig?: {
+    customTitle?: string | null;
+    customSubtitle?: string | null;
+  };
+}
+
+export default function ImpactSection({ metrics: propMetrics, sectionConfig }: ImpactSectionProps = {}) {
+  const allMetrics = (propMetrics || PORTFOLIO_DATA.metrics).filter(
+    (m) => m.isPublished !== false
+  );
 
   // Split metrics into Flagship Macro Pillars and Operational Ledgers
-  const primaryMetrics = metrics.slice(0, 2);
-  const secondaryMetrics = metrics.slice(2);
+  const primaryMetrics = allMetrics.slice(0, 2);
+  const secondaryMetrics = allMetrics.slice(2);
 
   return (
     <section id="impact" className="py-24 sm:py-32 lg:py-36 border-b border-white/[0.08] bg-[#070A11]">
@@ -19,11 +30,12 @@ export default function ImpactSection() {
         <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-16 pb-8 border-b border-white/[0.08] gap-8">
           <div>
             <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-[1.12]">
-              Documented Scale &amp; Commercial Velocity
+              {sectionConfig?.customTitle || "Documented Scale & Commercial Velocity"}
             </h2>
           </div>
           <p className="text-slate-400 text-sm sm:text-base max-w-md font-light leading-relaxed">
-            Every metric represents audited milestones across multinational sales territories, corporate boardrooms, and nationwide professional youth ecosystems.
+            {sectionConfig?.customSubtitle ||
+              "Every metric represents audited milestones across multinational sales territories, corporate boardrooms, and nationwide professional youth ecosystems."}
           </p>
         </div>
 

@@ -2,11 +2,16 @@
 
 import React, { useState, useEffect } from "react";
 import { PORTFOLIO_DATA } from "@/data/portfolioData";
+import { LivePortfolioData } from "@/lib/dal";
 import LinkedinIcon from "@/components/icons/LinkedinIcon";
 import { Phone, Mail, MessageCircle, ArrowUp } from "lucide-react";
 
-export default function MobileBottomBar() {
-  const { profile } = PORTFOLIO_DATA;
+interface MobileBottomBarProps {
+  profile?: LivePortfolioData["profile"];
+}
+
+export default function MobileBottomBar({ profile: propProfile }: MobileBottomBarProps = {}) {
+  const profile = propProfile || PORTFOLIO_DATA.profile;
   const { contact } = profile;
   const [showScrollTop, setShowScrollTop] = useState(false);
 

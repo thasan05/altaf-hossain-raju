@@ -3,10 +3,27 @@
 import React from "react";
 import Image from "next/image";
 import { PORTFOLIO_DATA } from "@/data/portfolioData";
+import { LivePortfolioData } from "@/lib/dal";
 import { GraduationCap, Building2 } from "lucide-react";
 
-export default function AboutSection() {
-  const { profile, leadershipRoles } = PORTFOLIO_DATA;
+interface AboutSectionProps {
+  profile?: LivePortfolioData["profile"];
+  leadershipRoles?: LivePortfolioData["leadershipRoles"];
+  sectionConfig?: {
+    customTitle?: string | null;
+    customSubtitle?: string | null;
+  };
+}
+
+export default function AboutSection({
+  profile: propProfile,
+  leadershipRoles: propLeadershipRoles,
+  sectionConfig,
+}: AboutSectionProps = {}) {
+  const profile = propProfile || PORTFOLIO_DATA.profile;
+  const leadershipRoles = (propLeadershipRoles || PORTFOLIO_DATA.leadershipRoles).filter(
+    (r) => r.isPublished !== false
+  );
 
   const corePillars = [
     {
@@ -31,13 +48,20 @@ export default function AboutSection() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start mb-16 pb-8 border-b border-white/[0.08]">
           <div className="lg:col-span-8">
             <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-[1.12]">
-              Commercial Acumen in the Boardroom. <br />
-              <span className="font-semibold text-slate-200 italic">Empathetic Leadership in the Community.</span>
+              {sectionConfig?.customTitle ? (
+                sectionConfig.customTitle
+              ) : (
+                <>
+                  Commercial Acumen in the Boardroom. <br />
+                  <span className="font-semibold text-slate-200 italic">Empathetic Leadership in the Community.</span>
+                </>
+              )}
             </h2>
           </div>
           <div className="lg:col-span-4 lg:pt-2">
             <p className="text-slate-400 text-sm sm:text-base font-light leading-relaxed">
-              Bridging multinational business discipline with grassroots youth capability development to cultivate Bangladesh&apos;s next echelon of operational leaders.
+              {sectionConfig?.customSubtitle ||
+                "Bridging multinational business discipline with grassroots youth capability development to cultivate Bangladesh's next echelon of operational leaders."}
             </p>
           </div>
         </div>
@@ -52,8 +76,8 @@ export default function AboutSection() {
             <div className="bg-[#0C111C] p-3.5 sm:p-5 border border-white/10 shadow-2xl">
               <div className="relative aspect-[4/5] overflow-hidden bg-[#070A11] border border-white/[0.06]">
                 <Image
-                  src={profile.images.portraitCorporate}
-                  alt="Altaf Hossain Raju - Executive Portrait"
+                  src={profile.images.portraitCorporate || "/images/altaf-portrait-corporate.jpg"}
+                  alt={`${profile.displayName || "Altaf Hossain Raju"} - Executive Portrait`}
                   fill
                   sizes="(max-width: 640px) 320px, (max-width: 1024px) 380px, 420px"
                   className="object-cover object-center filter contrast-[1.03]"
@@ -81,7 +105,7 @@ export default function AboutSection() {
                 &ldquo;{profile.philosophy}&rdquo;
               </blockquote>
               <div className="pt-3 border-t border-white/[0.08] flex items-center justify-between text-xs font-sans text-slate-400">
-                <span className="text-[#D4AF37] font-semibold">Altaf Hossain Raju, PMP®</span>
+                <span className="text-[#D4AF37] font-semibold">{profile.fullName || "Altaf Hossain Raju"}, {profile.honorificSuffix || "PMP®"}</span>
                 <span>Area Manager, Marico</span>
               </div>
             </div>
@@ -123,25 +147,27 @@ export default function AboutSection() {
             </div>
 
             {/* Institutional Affiliations & Governance Directory */}
-            <div className="pt-8 border-t border-white/[0.08]">
-              <div className="flex items-center gap-2 mb-4">
-                <Building2 className="w-4 h-4 text-[#D4AF37]" aria-hidden="true" />
-                <h3 className="font-serif text-xl font-bold text-white">
-                  Institutional Affiliations &amp; Governance
-                </h3>
-              </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs font-sans">
-                {leadershipRoles.map((role, idx) => (
-                  <div key={idx} className="p-4 bg-[#0C111C] border border-white/[0.08] flex flex-col justify-between">
-                    <span className="font-semibold text-slate-100 text-sm mb-1">{role.role}</span>
-                    <div className="text-slate-400 mt-2 flex items-center justify-between border-t border-white/[0.04] pt-2">
-                      <span className="truncate">{role.organization}</span>
-                      <span className="text-[#D4AF37] font-sans font-semibold shrink-0 ml-2">{role.period}</span>
+            {leadershipRoles.length > 0 && (
+              <div className="pt-8 border-t border-white/[0.08]">
+                <div className="flex items-center gap-2 mb-4">
+                  <Building2 className="w-4 h-4 text-[#D4AF37]" aria-hidden="true" />
+                  <h3 className="font-serif text-xl font-bold text-white">
+                    Institutional Affiliations &amp; Governance
+                  </h3>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs font-sans">
+                  {leadershipRoles.map((role, idx) => (
+                    <div key={idx} className="p-4 bg-[#0C111C] border border-white/[0.08] flex flex-col justify-between">
+                      <span className="font-semibold text-slate-100 text-sm mb-1">{role.role}</span>
+                      <div className="text-slate-400 mt-2 flex items-center justify-between border-t border-white/[0.04] pt-2">
+                        <span className="truncate">{role.organization}</span>
+                        <span className="text-[#D4AF37] font-sans font-semibold shrink-0 ml-2">{role.period}</span>
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
 
           </div>
 

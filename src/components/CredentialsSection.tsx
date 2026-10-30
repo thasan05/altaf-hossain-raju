@@ -3,16 +3,35 @@
 import React from "react";
 import Image from "next/image";
 import { PORTFOLIO_DATA } from "@/data/portfolioData";
+import { LivePortfolioData } from "@/lib/dal";
 import { ShieldCheck, Award } from "lucide-react";
 
-export default function CredentialsSection() {
-  const { credentials, awards } = PORTFOLIO_DATA;
+interface CredentialsSectionProps {
+  credentials?: LivePortfolioData["credentials"];
+  awards?: LivePortfolioData["awards"];
+  sectionConfig?: {
+    customTitle?: string | null;
+    customSubtitle?: string | null;
+  };
+}
+
+export default function CredentialsSection({
+  credentials: propCredentials,
+  awards: propAwards,
+  sectionConfig,
+}: CredentialsSectionProps = {}) {
+  const credentials = (propCredentials || PORTFOLIO_DATA.credentials).filter(
+    (c) => c.isPublished !== false
+  );
+  const awards = (propAwards || PORTFOLIO_DATA.awards).filter(
+    (a) => a.isPublished !== false
+  );
 
   const premierCredentials = credentials.filter(
-    (c) => c.id === "pmp" || c.status.includes("Pursuing")
+    (c) => c.isPremier || c.id === "pmp" || c.status.includes("Pursuing")
   );
   const foundationalCredentials = credentials.filter(
-    (c) => c.id !== "pmp" && !c.status.includes("Pursuing")
+    (c) => !premierCredentials.some((p) => p.id === c.id)
   );
 
   return (
@@ -23,11 +42,12 @@ export default function CredentialsSection() {
         <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-16 pb-8 border-b border-white/[0.08] gap-8">
           <div>
             <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-[1.12]">
-              Academic Foundation &amp; Professional Accreditations
+              {sectionConfig?.customTitle || "Academic Foundation & Professional Accreditations"}
             </h2>
           </div>
           <p className="text-slate-400 text-sm sm:text-base max-w-md font-light leading-relaxed">
-            Distinguishing completed undergraduate degrees, ongoing executive studies at IBA University of Dhaka, and globally certified project management qualifications.
+            {sectionConfig?.customSubtitle ||
+              "Distinguishing completed undergraduate degrees, ongoing executive studies at IBA University of Dhaka, and globally certified project management qualifications."}
           </p>
         </div>
 

@@ -1,36 +1,97 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Md. Altaf Hossain Raju, PMP® — Executive Portfolio & Dynamic CMS
+
+Official personal portfolio website and Content Management System (CMS) for **Md. Altaf Hossain Raju, PMP®** — Area Manager at Marico Bangladesh Limited, Founder of LinkedIn Community Bangladesh (LCB), and executive mentor.
+
+Built with **Next.js 16 (Turbopack, React 19, Tailwind CSS v4)**, **Neon Serverless PostgreSQL**, and a secure executive administrative control panel.
+
+---
+
+## Key Features
+
+- **Full-Spectrum Content Management**: 100% of the portfolio content (Hero, Bio, Impact Metrics, Career Timeline, Ventures, Competencies, Speaking, Credentials, Awards, Affiliations, Press Coverage, Testimonials, Contact Channels, and Site Settings) is manageable via an authenticated admin dashboard.
+- **Dynamic Layout & Section Control**: Drag-and-drop ordering and instant visibility toggles for all 11 homepage sections.
+- **Integrated Media Asset Vault**: Upload, catalog, search, and embed imagery across every section form with direct preview and alt text management.
+- **Enterprise-Grade Security**: HS256 JWT tokens using WebCrypto `jose`, 10-round `bcryptjs` password hashing, Next.js 16 `proxy.ts` route protection, and forensic `activity_logs` audit trail.
+- **Zero-Downtime Resilience**: Data Access Layer (`src/lib/dal.ts`) automatically falls back to curated static datasets if database connectivity is ever interrupted.
+- **Executive Broadsheet Aesthetic**: Respects `DESIGN.md` guidelines with `Newsreader` editorial serifs, `Manrope` sans-serif hierarchy, subtle gold `#D4AF37` hairline borders, and full WCAG AA contrast.
+
+---
+
+## Technology Stack
+
+- **Framework**: Next.js 16.4.3 (App Router, Turbopack, Partial Prerendering, Component Caching)
+- **UI Library**: React 19.3.0, Lucide React, Framer Motion
+- **Styling**: Tailwind CSS v4
+- **Database**: PostgreSQL 16 hosted on Neon Serverless (`@neondatabase/serverless`)
+- **Authentication**: JWT via `jose`, Password hashing via `bcryptjs`
+
+---
 
 ## Getting Started
 
-First, run the development server:
+### 1. Clone & Install Dependencies
+
+```bash
+git clone https://github.com/thasan05/altaf-hossain-raju.git
+cd altaf-hossain-raju
+npm install
+```
+
+### 2. Configure Environment Variables
+
+Create `.env.local` in the project root:
+
+```env
+DATABASE_URL="postgresql://user:password@ep-rapid-wave-b5i11t1d-pooler.c-7.us-east-2.aws.neon.tech/neondb?sslmode=require"
+ADMIN_JWT_SECRET="your-secure-random-jwt-secret-key-at-least-32-chars"
+NEXT_PUBLIC_SITE_URL="https://altafhossainraju.com"
+```
+
+### 3. Run Database Migrations & Seed Data
+
+```bash
+node scripts/migrate.js
+node scripts/seed.js
+```
+
+### 4. Run Development Server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Public Portfolio: [http://localhost:3000](http://localhost:3000)
+- Administrative Panel: [http://localhost:3000/admin](http://localhost:3000/admin)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Administrative Access
 
-## Learn More
+- **Login URL**: `/admin/login`
+- **Initial Email**: `admin@altafhossainraju.com`
+- **Initial Password**: `AdminRaju2026!Secure`
 
-To learn more about Next.js, take a look at the following resources:
+*(Change this password immediately via Admin Panel -> Security -> Change Password).*
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Verification & Automated Testing
 
-## Deploy on Vercel
+Run the full end-to-end audit test suite:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+node scripts/verify-all.js
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Run production build and linting checks:
+
+```bash
+npm run lint
+npm run build
+```
+
+---
+
+## Documentation
+
+For full architectural details, database schemas, and REST API specifications, refer to [CMS_DOCUMENTATION.md](./CMS_DOCUMENTATION.md).

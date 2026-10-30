@@ -2,11 +2,16 @@
 
 import React from "react";
 import { PORTFOLIO_DATA } from "@/data/portfolioData";
+import { LivePortfolioData } from "@/lib/dal";
 import LinkedinIcon from "@/components/icons/LinkedinIcon";
 import { ArrowUp, Mail, ExternalLink } from "lucide-react";
 
-export default function Footer() {
-  const { profile } = PORTFOLIO_DATA;
+interface FooterProps {
+  profile?: LivePortfolioData["profile"];
+}
+
+export default function Footer({ profile: propProfile }: FooterProps = {}) {
+  const profile = propProfile || PORTFOLIO_DATA.profile;
   const currentYear = 2026;
 
   const scrollToTop = () => {
