@@ -1,0 +1,350 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-29T21:17:30+06:00",
+  "title": "Design System: Altaf Hossain Raju Portfolio",
+  "extensions": {
+    "colorMeta": {
+      "primary": {
+        "role": "primary",
+        "displayName": "Auric Gold",
+        "canonical": "#D4AF37",
+        "tonalRamp": [
+          "#3D3108",
+          "#665313",
+          "#8C721C",
+          "#B39227",
+          "#D4AF37",
+          "#E2C465",
+          "#EFD993",
+          "#FBF5E0"
+        ]
+      },
+      "primary-deep": {
+        "role": "primary",
+        "displayName": "Deep Amber Bronze",
+        "canonical": "#AA822A",
+        "tonalRamp": [
+          "#261C04",
+          "#4D3A0A",
+          "#735712",
+          "#8E6C1D",
+          "#AA822A",
+          "#C4A14F",
+          "#DEC07C",
+          "#F5E5C0"
+        ]
+      },
+      "primary-light": {
+        "role": "primary",
+        "displayName": "Pale Champagne",
+        "canonical": "#F5E6CA",
+        "tonalRamp": [
+          "#3B3324",
+          "#665942",
+          "#948364",
+          "#C2AD88",
+          "#F5E6CA",
+          "#F8EDDC",
+          "#FCF5EC",
+          "#FFFDFB"
+        ]
+      },
+      "secondary": {
+        "role": "secondary",
+        "displayName": "Teal Emergence",
+        "canonical": "#14B8A6",
+        "tonalRamp": [
+          "#042F2E",
+          "#0D4F4A",
+          "#116F68",
+          "#139387",
+          "#14B8A6",
+          "#4DD1C3",
+          "#8BE5DC",
+          "#CEF5F1"
+        ]
+      },
+      "neutral-bg": {
+        "role": "neutral",
+        "displayName": "Obsidian Midnight",
+        "canonical": "#060A12",
+        "tonalRamp": [
+          "#030509",
+          "#060A12",
+          "#0C1424",
+          "#142038",
+          "#1D2F52",
+          "#2C4472",
+          "#415E98",
+          "#5F7EBD"
+        ]
+      },
+      "neutral-surface": {
+        "role": "neutral",
+        "displayName": "Slate Surface",
+        "canonical": "#0F172A",
+        "tonalRamp": [
+          "#050810",
+          "#0A0F1D",
+          "#0F172A",
+          "#1E293B",
+          "#334155",
+          "#475569",
+          "#64748B",
+          "#94A3B8"
+        ]
+      },
+      "neutral-card": {
+        "role": "neutral",
+        "displayName": "Obsidian Glass Card",
+        "canonical": "#111827",
+        "tonalRamp": [
+          "#080C14",
+          "#0C121E",
+          "#111827",
+          "#1F2937",
+          "#374151",
+          "#4B5563",
+          "#6B7280",
+          "#9CA3AF"
+        ]
+      },
+      "text-primary": {
+        "role": "neutral",
+        "displayName": "Slate Light",
+        "canonical": "#E2E8F0",
+        "tonalRamp": [
+          "#1E293B",
+          "#334155",
+          "#475569",
+          "#64748B",
+          "#94A3B8",
+          "#CBD5E1",
+          "#E2E8F0",
+          "#F8FAFC"
+        ]
+      },
+      "text-muted": {
+        "role": "neutral",
+        "displayName": "Muted Slate",
+        "canonical": "#94A3B8",
+        "tonalRamp": [
+          "#0F172A",
+          "#1E293B",
+          "#334155",
+          "#475569",
+          "#64748B",
+          "#94A3B8",
+          "#CBD5E1",
+          "#E2E8F0"
+        ]
+      },
+      "border-subtle": {
+        "role": "neutral",
+        "displayName": "Subtle Slate Border",
+        "canonical": "#1E293B",
+        "tonalRamp": [
+          "#080C14",
+          "#0E1524",
+          "#151F33",
+          "#1E293B",
+          "#2C3C54",
+          "#3D516E",
+          "#526B8F",
+          "#6D88B0"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display Serif",
+        "purpose": "Hero Section major value proposition and brand statements."
+      },
+      "display-xl": {
+        "displayName": "Display Extra Large",
+        "purpose": "Hero headline on large desktop screens (68px)."
+      },
+      "headline": {
+        "displayName": "Section Headline",
+        "purpose": "Major section titles and executive highlights."
+      },
+      "title": {
+        "displayName": "Card & Role Title",
+        "purpose": "Role titles, venture names, and speaking topic titles."
+      },
+      "body": {
+        "displayName": "Body Sans",
+        "purpose": "Executive bio, responsibility narratives, and editorial paragraphs."
+      },
+      "label": {
+        "displayName": "System Label & Badge",
+        "purpose": "PMP credentials, metadata timestamps, and category pills."
+      },
+      "caption": {
+        "displayName": "Micro Metadata & Provenance",
+        "purpose": "Footnotes, source attributions, and cluster tags."
+      },
+      "micro": {
+        "displayName": "Micro Pill & Status",
+        "purpose": "Micro status badges, bottom bar tabs, and compact chips (10px)."
+      }
+    },
+    "shadows": [
+      {
+        "name": "card-rest",
+        "value": "0 10px 30px -10px rgba(0, 0, 0, 0.5)",
+        "purpose": "Resting elevation for luxury glass cards."
+      },
+      {
+        "name": "card-hover",
+        "value": "0 20px 40px -15px rgba(0, 0, 0, 0.7), 0 0 20px -5px rgba(212, 175, 55, 0.15)",
+        "purpose": "Elevated hover state with subtle auric glow."
+      },
+      {
+        "name": "button-glow",
+        "value": "0 10px 25px -5px rgba(212, 175, 55, 0.25)",
+        "purpose": "Luminous hover depth for primary call-to-action button."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out-expo",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Smooth luxury card lifts and drawer transitions."
+      },
+      {
+        "name": "duration-normal",
+        "value": "300ms",
+        "purpose": "Standard interactive hover and border shift speed."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "640px"
+      },
+      {
+        "name": "md",
+        "value": "768px"
+      },
+      {
+        "name": "lg",
+        "value": "1024px"
+      },
+      {
+        "name": "xl",
+        "value": "1280px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Action Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "High-impact conversion button for primary CTAs like 'Explore Journey' or 'Let's Connect'.",
+      "html": "<button class=\"ds-btn-primary\"><span>EXPLORE MY JOURNEY</span><svg class=\"ds-btn-icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><line x1=\"12\" y1=\"5\" x2=\"12\" y2=\"19\"></line><polyline points=\"19 12 12 19 5 12\"></polyline></svg></button>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; justify-content: center; gap: 10px; background: linear-gradient(135deg, #FDE68A 0%, #F59E0B 50%, #D97706 100%); color: #060A12; font-family: system-ui, sans-serif; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; padding: 14px 28px; border-radius: 9999px; border: none; cursor: pointer; box-shadow: 0 10px 20px -5px rgba(212, 175, 55, 0.3); transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease; } .ds-btn-primary:hover { transform: translateY(-1px) scale(1.02); box-shadow: 0 14px 28px -5px rgba(212, 175, 55, 0.45); } .ds-btn-primary:active { transform: translateY(0) scale(0.98); } .ds-btn-icon { width: 16px; height: 16px; }"
+    },
+    {
+      "name": "Secondary Action Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Secondary outline button for LinkedIn connections and portfolio cross-links.",
+      "html": "<a class=\"ds-btn-secondary\" href=\"#\"><span>CONNECT ON LINKEDIN</span><svg class=\"ds-btn-icon\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><line x1=\"7\" y1=\"17\" x2=\"17\" y2=\"7\"></line><polyline points=\"7 7 17 7 17 17\"></polyline></svg></a>",
+      "css": ".ds-btn-secondary { display: inline-flex; align-items: center; justify-content: center; gap: 10px; background: rgba(15, 23, 42, 0.9); color: #E2E8F0; font-family: system-ui, sans-serif; font-size: 13px; font-weight: 600; text-decoration: none; padding: 14px 26px; border-radius: 9999px; border: 1px solid #334155; cursor: pointer; transition: all 0.2s ease; } .ds-btn-secondary:hover { border-color: rgba(212, 175, 55, 0.5); color: #FFFFFF; background: rgba(30, 41, 59, 0.95); transform: translateY(-1px); } .ds-btn-secondary:active { transform: scale(0.98); } .ds-btn-icon { width: 16px; height: 16px; color: #D4AF37; }"
+    },
+    {
+      "name": "Luxury Frosted Card",
+      "kind": "card",
+      "refersTo": "card-luxury",
+      "description": "Modular container card for career roles, ventures, credentials, and achievements.",
+      "html": "<div class=\"ds-luxury-card\"><div class=\"ds-card-badge\">MARICO BANGLADESH</div><h3 class=\"ds-card-title\">Area Manager – Market Operation</h3><p class=\"ds-card-meta\">Southern Cluster &bull; Jan 2024 – Present</p><p class=\"ds-card-desc\">Overseeing sales planning, route-to-market architecture, alternative channel distribution, and multi-tier team management.</p></div>",
+      "css": ".ds-luxury-card { background: linear-gradient(180deg, rgba(17, 24, 39, 0.85) 0%, rgba(11, 17, 29, 0.95) 100%); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 20px; padding: 24px; box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5); transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); } .ds-luxury-card:hover { border-color: rgba(212, 175, 55, 0.35); transform: translateY(-2px); box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.7), 0 0 20px -5px rgba(212, 175, 55, 0.15); } .ds-card-badge { display: inline-block; font-family: monospace; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #FCD34D; background: rgba(212, 175, 55, 0.12); border: 1px solid rgba(212, 175, 55, 0.25); padding: 3px 10px; border-radius: 6px; margin-bottom: 12px; } .ds-card-title { font-family: Georgia, serif; font-size: 20px; font-weight: 700; color: #FFFFFF; margin: 0 0 6px 0; } .ds-card-meta { font-family: system-ui, sans-serif; font-size: 13px; color: #94A3B8; margin: 0 0 12px 0; } .ds-card-desc { font-family: system-ui, sans-serif; font-size: 14px; line-height: 1.6; color: #CBD5E1; margin: 0; }"
+    },
+    {
+      "name": "PMP® Credential Pill",
+      "kind": "chip",
+      "refersTo": "chip-pmp",
+      "description": "Distinguished verification pill marking Altaf Hossain Raju's global PMP certification.",
+      "html": "<span class=\"ds-chip-pmp\">PMP®</span>",
+      "css": ".ds-chip-pmp { display: inline-flex; align-items: center; justify-content: center; font-family: system-ui, sans-serif; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: #FCD34D; background: rgba(212, 175, 55, 0.15); border: 1px solid rgba(212, 175, 55, 0.35); border-radius: 4px; padding: 2px 6px; line-height: 1; }"
+    },
+    {
+      "name": "Executive Stat Metric",
+      "kind": "custom",
+      "refersTo": "stat-metric",
+      "description": "High-impact numerical metric counter with verified proof attribution.",
+      "html": "<div class=\"ds-stat-metric\"><div class=\"ds-stat-value\">24,000+</div><div class=\"ds-stat-label\">Students & Professionals Impacted</div><div class=\"ds-stat-source\">Verified: Official LCB Registry</div></div>",
+      "css": ".ds-stat-metric { background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 16px; padding: 20px; } .ds-stat-value { font-family: Georgia, serif; font-size: 36px; font-weight: 700; color: #D4AF37; line-height: 1.1; margin-bottom: 6px; } .ds-stat-label { font-family: system-ui, sans-serif; font-size: 13px; font-weight: 600; color: #E2E8F0; margin-bottom: 4px; } .ds-stat-source { font-family: monospace; font-size: 11px; color: #64748B; text-transform: uppercase; letter-spacing: 0.05em; }"
+    },
+    {
+      "name": "Inquiry Text Input",
+      "kind": "input",
+      "refersTo": "input-text",
+      "description": "Accessible form input with obsidian base and auric focus ring.",
+      "html": "<div class=\"ds-input-group\"><label class=\"ds-input-label\">YOUR FULL NAME *</label><input class=\"ds-input-field\" type=\"text\" placeholder=\"e.g. Mahfuz Rahman\" /></div>",
+      "css": ".ds-input-group { display: flex; flex-direction: column; gap: 6px; } .ds-input-label { font-family: monospace; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: #CBD5E1; } .ds-input-field { background: rgba(15, 23, 42, 0.9); border: 1px solid #1E293B; border-radius: 12px; color: #E2E8F0; font-family: system-ui, sans-serif; font-size: 15px; padding: 12px 16px; outline: none; transition: border-color 0.2s ease; } .ds-input-field::placeholder { color: #64748B; } .ds-input-field:focus { border-color: #D4AF37; }"
+    },
+    {
+      "name": "Floating Navigation Capsule",
+      "kind": "nav",
+      "refersTo": "nav-floating",
+      "description": "Desktop floating capsule navigation bar with active section indicator.",
+      "html": "<nav class=\"ds-nav-capsule\"><a class=\"ds-nav-link ds-nav-active\" href=\"#about\">About</a><a class=\"ds-nav-link\" href=\"#career\">Career</a><a class=\"ds-nav-link\" href=\"#ventures\">Ventures</a><a class=\"ds-nav-link\" href=\"#credentials\">Credentials</a></nav>",
+      "css": ".ds-nav-capsule { display: inline-flex; align-items: center; gap: 4px; background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(10px); border: 1px solid #1E293B; border-radius: 9999px; padding: 6px 10px; } .ds-nav-link { font-family: system-ui, sans-serif; font-size: 12px; font-weight: 500; color: #94A3B8; text-decoration: none; padding: 6px 14px; border-radius: 9999px; transition: all 0.2s ease; } .ds-nav-link:hover { color: #FFFFFF; background: rgba(30, 41, 59, 0.8); } .ds-nav-active { color: #FCD34D !important; background: rgba(212, 175, 55, 0.15) !important; border: 1px solid rgba(212, 175, 55, 0.3); font-weight: 600; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Executive Pavilion",
+    "overview": "The visual language reflects the architectural poise of a prestigious executive pavilion—an elevated environment designed for high-stakes decision-makers, boardroom peers, and corporate recruiters. It balances commanding corporate gravitas with genuine human warmth and service leadership. The deep obsidian atmosphere creates focused cinematic contrast, while refined metallic gold and champagne accents highlight verified milestones and operational credentials.\n\nRather than generic tech minimalism or stark corporate austerity, the interface embraces an editorial luxury ethos. High-contrast typography pairs classical serif headlines with hyper-readable modern sans-serif body copy, supported by authentic, unembellished event and portrait photography. Surfaces are rich, multi-layered, and atmospheric, evoking the quiet confidence of an established multinational sales leader and community founder.",
+    "keyCharacteristics": [
+      "Cinematic Obsidian Atmosphere: Deep midnight blue-black canvas (#060A12) provides infinite depth and zero eye strain.",
+      "Selective Auric Warmth: Metallic gold (#D4AF37) is deployed with surgical discipline for active states, key credentials, and primary conversion paths.",
+      "Bespoke Editorial Serif Pairing: Classical Playfair Display headlines project institutional stature, while Plus Jakarta Sans ensures effortless legibility on high-density data.",
+      "Frosted Glass Precision: Tactile glassmorphism cards with fine 1px slate borders, subtle backdrop blur, and directional auric hover glows.",
+      "Authentic Documentary Photography: Real-world auditorium keynotes, campus summits, and official portraits ground every claim in verifiable truth."
+    ],
+    "rules": [
+      {
+        "name": "The Rarity of Gold Rule",
+        "body": "Auric Gold (#D4AF37) must occupy less than 10% of any viewport. Its power derives strictly from rarity and focus; overusing gold diminishes executive gravitas into decorative noise.",
+        "section": "colors"
+      },
+      {
+        "name": "The Pure Obsidian Rule",
+        "body": "The page background must never use flat #000000. The subtle navy undertone of Obsidian Midnight (#060A12) is essential to preserve rich chromatic resonance beneath glass surfaces.",
+        "section": "colors"
+      },
+      {
+        "name": "The Editorial Serif Rule",
+        "body": "Serif typography (Playfair Display) is reserved strictly for headings (h1, h2, h3, and prominent quotes). Never render body paragraphs, form labels, or UI buttons in serif.",
+        "section": "typography"
+      },
+      {
+        "name": "The Label Case Rule",
+        "body": "All category tags, system tags, and micro-badges must be rendered in uppercase monospace or sans-serif with expanded letter spacing (tracking-wider).",
+        "section": "typography"
+      },
+      {
+        "name": "The Ambient Restraint Rule",
+        "body": "Glowing borders and colored shadow halos are strictly interactive responses (hover, active focus). Elements at rest remain grounded in subtle slate borders.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do maintain the 10% maximum coverage rule for Auric Gold (#D4AF37).",
+      "Do use Playfair Display exclusively for headers and prominent pull quotes.",
+      "Do ensure all form inputs on mobile use text-base (16px) to prevent browser auto-zooming.",
+      "Do accompany every card with a crisp 1px border to separate it from the obsidian background.",
+      "Do preserve authentic documentary event photography, portraits, and supervisor contact references."
+    ],
+    "donts": [
+      "Don't use pure black (#000000) for the canvas; always use Obsidian Midnight (#060A12).",
+      "Don't use generic stock photos, AI-generated human faces, or fabricated client testimonials.",
+      "Don't mix non-canonical fonts; keep typography strictly within Playfair Display, Plus Jakarta Sans, and monospace.",
+      "Don't apply heavy drop shadows to elements at rest; reserve dramatic glows for hover and active focus states.",
+      "Don't use neon or saturated rainbow badges; keep secondary accents constrained to Teal Emergence (#14B8A6) and Slate neutrals."
+    ]
+  }
+}

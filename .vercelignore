@@ -1,0 +1,10 @@
+downloaded_assets/
+prepared_assets/
+mobile_audit/
+screenshots/
+extracted_img_*
+*.py
+lcb_page.html
+Resume-Md-Altaf-Hossain-Raju.pdf
+extracted_resume.txt
+*.log
