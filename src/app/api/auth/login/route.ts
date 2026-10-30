@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
 import { runQuery } from "@/lib/db";
-import { signAdminToken, setAdminSessionCookie } from "@/lib/auth";
+import { signAdminToken, setAdminSessionCookie, SESSION_COOKIE_NAME } from "@/lib/auth";
 import { logActivity } from "@/lib/dal";
 
 export async function POST(request: Request) {
@@ -13,6 +13,13 @@ export async function POST(request: Request) {
       return NextResponse.json(
         { error: "Email and password are required." },
         { status: 400 }
+      );
+    }
+
+    if (!process.env.DATABASE_URL) {
+      return NextResponse.json(
+        { error: "DATABASE_URL is not configured in environment variables. Please add it to your hosting settings." },
+        { status: 503 }
       );
     }
 
@@ -41,12 +48,6 @@ export async function POST(request: Request) {
       );
     }
 
-    // Update last login
-    await runQuery(
-      "UPDATE admin_users SET last_login_at = NOW() WHERE id = $1",
-      [user.id]
-    );
-
     // Sign session token
     const token = await signAdminToken({
       id: user.id,
@@ -55,11 +56,24 @@ export async function POST(request: Request) {
       role: user.role,
     });
 
-    await setAdminSessionCookie(token);
+    try {
+      await setAdminSessionCookie(token);
+    } catch (cookieErr) {
+      console.warn("setAdminSessionCookie warning:", cookieErr);
+    }
 
-    await logActivity("LOGIN", "USER", user.id, `User ${user.email} logged in.`, user.id);
+    // Optional updates - never block login
+    try {
+      await runQuery(
+        "UPDATE admin_users SET last_login_at = NOW() WHERE id = $1",
+        [user.id]
+      );
+      await logActivity("LOGIN", "USER", user.id, `User ${user.email} logged in.`, user.id);
+    } catch (auditErr) {
+      console.warn("Audit/last_login update warning:", auditErr);
+    }
 
-    return NextResponse.json({
+    const response = NextResponse.json({
       success: true,
       user: {
         id: user.id,
@@ -68,10 +82,22 @@ export async function POST(request: Request) {
         role: user.role,
       },
     });
-  } catch (error) {
+
+    // Explicitly set cookie on response header for serverless compatibility
+    response.cookies.set(SESSION_COOKIE_NAME, token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "lax",
+      path: "/",
+      maxAge: 60 * 60 * 24 * 7, // 7 days
+    });
+
+    return response;
+  } catch (error: any) {
     console.error("Login error:", error);
+    const message = error?.message || "An unexpected error occurred during authentication.";
     return NextResponse.json(
-      { error: "An unexpected error occurred during authentication." },
+      { error: message },
       { status: 500 }
     );
   }
