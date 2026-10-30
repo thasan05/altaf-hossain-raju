@@ -7,95 +7,167 @@ import { TrendingUp, Layers, Users2, Share2, Rocket, GraduationCap } from "lucid
 export default function ExpertiseSection() {
   const { areasOfExpertise } = PORTFOLIO_DATA;
 
-  const domainIcons = [TrendingUp, Layers, Users2, Share2, Rocket, GraduationCap];
-
-  const domainBadges = [
-    "Commercial Operations",
-    "Revenue & Pricing",
-    "Partner Governance",
-    "Youth Ecosystem",
-    "Executive Advisory",
-    "PMP® Frameworks"
-  ];
+  // Group into thematic strategic tiers
+  const primaryCommercial = areasOfExpertise[0]; // Route-to-Market
+  const secondaryCommercial = areasOfExpertise.slice(1, 3); // Revenue & Partner Governance
+  const youthAndMentorship = areasOfExpertise.slice(3, 5); // Talent Pipeline & Executive Presence
+  const pmpGovernance = areasOfExpertise[5]; // Project Management
 
   return (
-    <section id="expertise" className="py-20 sm:py-28 lg:py-36 border-b border-white/[0.08] bg-[#070A11] scroll-mt-20">
+    <section id="expertise" className="py-24 sm:py-32 lg:py-36 border-b border-white/[0.08] bg-[#070A11] scroll-mt-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-16 pb-8 border-b border-white/10 gap-6">
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-16 pb-8 border-b border-white/[0.08] gap-8">
           <div>
-            <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight">
+            <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-[1.12]">
               Strategic Competencies &amp; Functional Domains
             </h2>
           </div>
-          <p className="text-slate-400 text-sm sm:text-base max-w-lg font-light leading-relaxed">
-            Synthesized across multinational corporate sales leadership, distribution channel economics, and nationwide human capability development.
+          <p className="text-slate-400 text-sm sm:text-base max-w-md font-light leading-relaxed">
+            Synthesized across multinational sales leadership, route-to-market distribution economics, and nationwide capability architecture.
           </p>
         </div>
 
-        {/* Competencies Architectural Ledger: Structured Responsive Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-          {areasOfExpertise.map((domain, idx) => {
-            const Icon = domainIcons[idx % domainIcons.length];
-            const badge = domainBadges[idx % domainBadges.length];
-            return (
-              <div
-                key={idx}
-                className="bg-[#0C111C] border border-white/10 p-6 sm:p-8 flex flex-col justify-between hover:border-[#D4AF37]/40 transition-colors"
-              >
-                <div>
-                  
-                  {/* Domain Meta Header */}
-                  <div className="flex items-center justify-between pb-4 mb-4 border-b border-white/[0.06]">
-                    <span className="font-sans text-xs font-semibold uppercase tracking-wider text-[#D4AF37]">
-                      {badge}
-                    </span>
-                    <Icon className="w-4 h-4 text-slate-400" aria-hidden="true" />
-                  </div>
-
-                  {/* Title */}
-                  <h3 className="font-serif text-xl font-bold text-white mb-3">
-                    {domain.title}
-                  </h3>
-
-                  {/* Description */}
-                  <p className="text-xs sm:text-sm text-slate-400 font-light leading-relaxed mb-6">
-                    {domain.description}
-                  </p>
-                </div>
-
-                {/* Sub-competencies tags */}
-                <div className="pt-4 border-t border-white/[0.06]">
-                  <div className="flex flex-wrap gap-1.5">
-                    {domain.competencies.map((comp, cIdx) => (
-                      <span
-                        key={cIdx}
-                        className="text-xs font-sans px-2.5 py-1 bg-[#070A11] border border-white/[0.08] text-slate-300"
-                      >
-                        {comp}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
+        {/* Asymmetrical Competency Architecture */}
+        <div className="space-y-12">
+          
+          {/* Tier 1: Flagship Core Domain (Full-Width Broadsheet Feature) */}
+          <div className="bg-[#0C111C] border border-white/10 p-8 sm:p-12">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+              <div className="lg:col-span-5">
+                <span className="text-xs font-sans font-semibold uppercase tracking-widest text-[#D4AF37] block mb-2">
+                  Primary Commercial Pillar
+                </span>
+                <h3 className="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4">
+                  {primaryCommercial.title}
+                </h3>
+                <p className="text-sm sm:text-base text-slate-300 font-light leading-relaxed mb-6 max-w-[65ch]">
+                  {primaryCommercial.description}
+                </p>
               </div>
-            );
-          })}
-        </div>
 
-        {/* Strategic Context Note */}
-        <div className="mt-12 p-6 bg-[#0C111C] border border-white/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-          <div className="text-xs sm:text-sm text-slate-300 font-light">
-            <strong className="text-white font-medium">Executive Methodology: </strong>
-            Every commercial competency is backed by PMP® governance frameworks, advanced financial modeling from IBA DU, and seven years of FMCG field execution.
+              <div className="lg:col-span-7">
+                <span className="text-xs font-sans font-semibold uppercase tracking-wider text-slate-400 block mb-4 pb-2 border-b border-white/[0.06]">
+                  Key Strategic Competencies
+                </span>
+                <div className="flex flex-wrap gap-2.5">
+                  {primaryCommercial.competencies.map((comp, cIdx) => (
+                    <span
+                      key={cIdx}
+                      className="text-xs sm:text-sm font-sans px-3.5 py-1.5 bg-[#070A11] border border-white/10 text-slate-200"
+                    >
+                      {comp}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
-          <a
-            href="#contact?intent=consultation"
-            className="text-xs font-sans font-semibold uppercase tracking-wider text-[#D4AF37] hover:underline shrink-0 min-h-[44px] inline-flex items-center"
-          >
-            Request Full Consultation &rarr;
-          </a>
+
+          {/* Tier 2: Two Dual-Column Strategic Ledgers (6 cols / 6 cols) */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            
+            {/* Commercial Revenue & Channel Governance */}
+            <div className="bg-[#0C111C] border border-white/10 p-8 sm:p-10 flex flex-col justify-between">
+              <div>
+                <span className="text-xs font-sans font-semibold uppercase tracking-widest text-[#D4AF37] block mb-2">
+                  Revenue Architecture &amp; Governance
+                </span>
+                <div className="space-y-8 mt-4">
+                  {secondaryCommercial.map((domain, idx) => (
+                    <div key={idx} className="pb-6 border-b border-white/[0.06] last:border-0 last:pb-0">
+                      <h4 className="font-serif text-xl font-bold text-white mb-2">
+                        {domain.title}
+                      </h4>
+                      <p className="text-xs sm:text-sm text-slate-400 font-light leading-relaxed mb-4 max-w-[65ch]">
+                        {domain.description}
+                      </p>
+                      <div className="flex flex-wrap gap-2">
+                        {domain.competencies.map((comp, cIdx) => (
+                          <span
+                            key={cIdx}
+                            className="text-xs font-sans px-2.5 py-1 bg-[#070A11] border border-white/[0.06] text-slate-300"
+                          >
+                            {comp}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Youth Ecosystem & Personal Brand Strategy */}
+            <div className="bg-[#0C111C] border border-white/10 p-8 sm:p-10 flex flex-col justify-between">
+              <div>
+                <span className="text-xs font-sans font-semibold uppercase tracking-widest text-[#D4AF37] block mb-2">
+                  Ecosystem Architecture &amp; Mentorship
+                </span>
+                <div className="space-y-8 mt-4">
+                  {youthAndMentorship.map((domain, idx) => (
+                    <div key={idx} className="pb-6 border-b border-white/[0.06] last:border-0 last:pb-0">
+                      <h4 className="font-serif text-xl font-bold text-white mb-2">
+                        {domain.title}
+                      </h4>
+                      <p className="text-xs sm:text-sm text-slate-400 font-light leading-relaxed mb-4 max-w-[65ch]">
+                        {domain.description}
+                      </p>
+                      <div className="flex flex-wrap gap-2">
+                        {domain.competencies.map((comp, cIdx) => (
+                          <span
+                            key={cIdx}
+                            className="text-xs font-sans px-2.5 py-1 bg-[#070A11] border border-white/[0.06] text-slate-300"
+                          >
+                            {comp}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          {/* Tier 3: PMP® Governance & Executive Methodology Bar */}
+          <div className="p-8 bg-[#0C111C] border border-white/10">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+              <div className="lg:col-span-8">
+                <span className="text-xs font-sans font-semibold uppercase tracking-widest text-[#D4AF37] block mb-1">
+                  Methodology &amp; Standards
+                </span>
+                <h4 className="font-serif text-xl sm:text-2xl font-bold text-white mb-2">
+                  {pmpGovernance.title}
+                </h4>
+                <p className="text-xs sm:text-sm text-slate-300 font-light leading-relaxed max-w-[65ch]">
+                  {pmpGovernance.description}
+                </p>
+                <div className="flex flex-wrap gap-2 mt-4">
+                  {pmpGovernance.competencies.map((comp, cIdx) => (
+                    <span
+                      key={cIdx}
+                      className="text-xs font-sans px-2.5 py-1 bg-[#070A11] border border-white/[0.06] text-slate-300"
+                    >
+                      {comp}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <div className="lg:col-span-4 lg:text-right">
+                <a
+                  href="#contact?intent=consultation"
+                  className="inline-flex items-center justify-center px-6 py-3.5 min-h-[44px] text-xs font-sans font-semibold uppercase tracking-wider text-[#070A11] bg-[#D4AF37] hover:bg-[#d8b56f] transition-colors"
+                >
+                  <span>Request Full Consultation &rarr;</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
         </div>
 
       </div>

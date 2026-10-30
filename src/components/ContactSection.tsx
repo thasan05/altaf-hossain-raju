@@ -103,17 +103,17 @@ export default function ContactSection() {
   const whatsappUrl = `https://wa.me/${cleanPhone}?text=Hello%20Altaf%20Hossain%20Raju,%20reaching%20out%20via%20your%20portfolio.`;
 
   return (
-    <section id="contact" className="py-20 sm:py-28 lg:py-36 border-b border-white/[0.08] bg-[#070A11] scroll-mt-20">
+    <section id="contact" className="py-24 sm:py-32 lg:py-36 border-b border-white/[0.08] bg-[#070A11] scroll-mt-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-16 pb-8 border-b border-white/10 gap-6">
+        <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-16 pb-8 border-b border-white/[0.08] gap-8">
           <div>
-            <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight">
-              Executive Inquiries &amp; Direct Collaboration
+            <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-[1.12]">
+              Executive Inquiries &amp; Direct Dialogue
             </h2>
           </div>
-          <p className="text-slate-400 text-sm sm:text-base max-w-lg font-light leading-relaxed">
+          <p className="text-slate-400 text-sm sm:text-base max-w-md font-light leading-relaxed">
             Open for executive FMCG leadership opportunities, keynote symposiums, corporate training masterclasses, and strategic community partnerships.
           </p>
         </div>
@@ -125,18 +125,18 @@ export default function ContactSection() {
           <div className="lg:col-span-5 space-y-6">
             
             {/* Direct Email Card */}
-            <div className="bg-[#0C111C] border border-white/10 p-6 flex items-start justify-between">
+            <div className="bg-[#0C111C] border border-white/10 p-6 sm:p-8 flex items-start justify-between">
               <div className="flex items-start gap-4">
                 <div className="w-10 h-10 bg-[#070A11] border border-white/10 flex items-center justify-center text-[#D4AF37] shrink-0">
                   <Mail className="w-4 h-4" aria-hidden="true" />
                 </div>
                 <div>
-                  <div className="text-xs font-sans font-semibold uppercase tracking-widest text-[#D4AF37] mb-1">
+                  <span className="text-xs font-sans font-semibold uppercase tracking-widest text-[#D4AF37] block mb-1">
                     Direct Email
-                  </div>
+                  </span>
                   <a
                     href={`mailto:${contact.email}`}
-                    className="font-mono text-sm sm:text-base text-white hover:text-[#D4AF37] transition-colors break-all"
+                    className="font-sans text-sm sm:text-base text-white hover:text-[#D4AF37] transition-colors break-all"
                   >
                     {contact.email}
                   </a>
@@ -162,7 +162,7 @@ export default function ContactSection() {
                 </div>
                 <a
                   href={`tel:${contact.phone}`}
-                  className="font-mono text-xs sm:text-sm text-white hover:text-[#D4AF37] transition-colors block"
+                  className="font-sans text-xs sm:text-sm text-white hover:text-[#D4AF37] transition-colors block font-medium"
                 >
                   {contact.phone}
                 </a>
@@ -195,7 +195,7 @@ export default function ContactSection() {
                   <div className="text-xs font-sans font-semibold uppercase tracking-wider text-slate-400 mb-0.5">
                     Verified LinkedIn
                   </div>
-                  <div className="font-serif text-sm font-semibold text-white">
+                  <div className="font-serif text-base font-semibold text-white">
                     24,000+ Professional Network
                   </div>
                 </div>
@@ -222,18 +222,18 @@ export default function ContactSection() {
             </div>
 
             {/* Corporate Supervisor References Note */}
-            <div className="pt-6 border-t border-white/10">
-              <div className="text-xs font-sans font-semibold uppercase tracking-wider text-slate-400 mb-3 flex items-center gap-2">
+            <div className="pt-6 border-t border-white/[0.08]">
+              <div className="text-xs font-sans font-semibold uppercase tracking-wider text-slate-300 mb-3 flex items-center gap-2">
                 <Building className="w-3.5 h-3.5 text-[#D4AF37]" aria-hidden="true" />
-                <span>Verified Supervisor Endorsements</span>
+                <span>Verified Corporate Supervisor References</span>
               </div>
-              <div className="space-y-3 text-xs font-sans bg-[#070A11] p-4 border border-white/[0.06]">
+              <div className="space-y-3 text-xs font-sans bg-[#070A11] p-5 border border-white/[0.06]">
                 <div>
-                  <div className="font-semibold text-slate-200">Taifur Ferdous</div>
+                  <div className="font-semibold text-slate-100 text-sm">Taifur Ferdous</div>
                   <div className="text-slate-400">Head of NGM Sales &amp; Trade Marketing, Marico Bangladesh Limited</div>
                 </div>
-                <div className="pt-2 border-t border-white/[0.06]">
-                  <div className="font-semibold text-slate-200">Shovan Chakraborty</div>
+                <div className="pt-3 border-t border-white/[0.06]">
+                  <div className="font-semibold text-slate-100 text-sm">Shovan Chakraborty</div>
                   <div className="text-slate-400">Cluster Market Director, Robi Axiata PLC</div>
                 </div>
               </div>
@@ -242,12 +242,12 @@ export default function ContactSection() {
           </div>
 
           {/* Right Column: Architectural Message Dispatcher (7 cols) */}
-          <div className="lg:col-span-7 bg-[#0C111C] border border-white/10 p-6 sm:p-10">
-            <h3 className="font-serif text-2xl font-bold text-white mb-2">
-              Dispatch a Direct Inquiry
+          <div className="lg:col-span-7 bg-[#0C111C] border border-white/10 p-8 sm:p-12">
+            <h3 className="font-serif text-2xl sm:text-3xl font-bold text-white mb-2">
+              Dispatch an Inquiry
             </h3>
-            <p className="text-xs sm:text-sm text-slate-400 font-light mb-8">
-              Select your inquiry objective below. Submitting will format and launch your email client with structured recipient data.
+            <p className="text-xs sm:text-sm text-slate-400 font-light mb-8 max-w-[65ch]">
+              Select your inquiry objective below. Submitting will format and launch your email client with structured recipient telemetry.
             </p>
 
             {status === "error" && (
@@ -288,13 +288,13 @@ export default function ContactSection() {
 
               {/* Inquiry Objective Picker */}
               <div>
-                <label className="block text-xs font-sans font-semibold uppercase tracking-wider text-slate-300 mb-2.5">
-                  Inquiry Purpose *
+                <label className="block text-xs font-sans font-semibold uppercase tracking-wider text-slate-300 mb-3">
+                  Inquiry Objective *
                 </label>
                 <div
                   role="radiogroup"
-                  aria-label="Inquiry Purpose"
-                  className="grid grid-cols-1 sm:grid-cols-2 gap-2.5"
+                  aria-label="Inquiry Objective"
+                  className="grid grid-cols-1 sm:grid-cols-2 gap-3"
                 >
                   {[
                     "Keynote / Speaker Engagement",
@@ -308,10 +308,10 @@ export default function ContactSection() {
                       role="radio"
                       aria-checked={formData.intent === intentOption}
                       onClick={() => setFormData({ ...formData, intent: intentOption })}
-                      className={`px-4 py-3 min-h-[44px] text-xs font-sans text-left border transition-all flex items-center ${
+                      className={`px-4 py-3.5 min-h-[44px] text-xs font-sans text-left border transition-all flex items-center ${
                         formData.intent === intentOption
-                          ? "bg-[#D4AF37] text-[#070A11] font-bold border-[#D4AF37]"
-                          : "bg-[#070A11] border-white/10 text-slate-400 hover:text-white"
+                          ? "bg-[#D4AF37] text-[#070A11] font-bold border-[#D4AF37] shadow-sm"
+                          : "bg-[#070A11] border-white/10 text-slate-400 hover:text-white hover:border-[#D4AF37]/40"
                       }`}
                     >
                       {intentOption}
@@ -333,7 +333,7 @@ export default function ContactSection() {
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     placeholder="e.g. Mahfuz Rahman"
-                    className="w-full px-4 py-3 bg-[#070A11] border border-white/10 text-white placeholder-slate-400 text-base sm:text-sm focus:outline-none focus:border-[#D4AF37] transition-colors"
+                    className="w-full px-4 py-3.5 bg-[#070A11] border border-white/10 text-white placeholder-slate-500 text-base sm:text-sm focus:outline-none focus:border-[#D4AF37] transition-colors"
                   />
                 </div>
 
@@ -348,7 +348,7 @@ export default function ContactSection() {
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     placeholder="e.g. mahfuz@example.com"
-                    className="w-full px-4 py-3 bg-[#070A11] border border-white/10 text-white placeholder-slate-400 text-base sm:text-sm focus:outline-none focus:border-[#D4AF37] transition-colors"
+                    className="w-full px-4 py-3.5 bg-[#070A11] border border-white/10 text-white placeholder-slate-500 text-base sm:text-sm focus:outline-none focus:border-[#D4AF37] transition-colors"
                   />
                 </div>
               </div>
@@ -363,8 +363,8 @@ export default function ContactSection() {
                   id="organization"
                   value={formData.organization}
                   onChange={(e) => setFormData({ ...formData, organization: e.target.value })}
-                  placeholder="e.g. Multinationals, University, Chamber"
-                  className="w-full px-4 py-3 bg-[#070A11] border border-white/10 text-white placeholder-slate-400 text-base sm:text-sm focus:outline-none focus:border-[#D4AF37] transition-colors"
+                  placeholder="e.g. Multinational, University, Chamber"
+                  className="w-full px-4 py-3.5 bg-[#070A11] border border-white/10 text-white placeholder-slate-500 text-base sm:text-sm focus:outline-none focus:border-[#D4AF37] transition-colors"
                 />
               </div>
 
@@ -380,7 +380,7 @@ export default function ContactSection() {
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   placeholder="Describe the opportunity, keynote date, venue, or commercial agenda..."
-                  className="w-full px-4 py-3 bg-[#070A11] border border-white/10 text-white placeholder-slate-400 text-base sm:text-sm focus:outline-none focus:border-[#D4AF37] transition-colors resize-none"
+                  className="w-full px-4 py-3.5 bg-[#070A11] border border-white/10 text-white placeholder-slate-500 text-base sm:text-sm focus:outline-none focus:border-[#D4AF37] transition-colors resize-none"
                 />
               </div>
 
@@ -388,7 +388,7 @@ export default function ContactSection() {
               <button
                 type="submit"
                 disabled={status === "submitting"}
-                className="w-full py-4 min-h-[48px] text-xs font-sans uppercase tracking-widest font-bold text-[#070A11] bg-[#D4AF37] hover:bg-[#d8b56f] transition-colors flex items-center justify-center gap-2"
+                className="w-full py-4 min-h-[48px] text-xs font-sans uppercase tracking-widest font-bold text-[#070A11] bg-[#D4AF37] hover:bg-[#d8b56f] transition-colors flex items-center justify-center gap-2 shadow-sm"
               >
                 <span>{status === "submitting" ? "Synthesizing Mail Draft..." : "Dispatch Executive Inquiry"}</span>
                 <Send className="w-4 h-4" aria-hidden="true" />
